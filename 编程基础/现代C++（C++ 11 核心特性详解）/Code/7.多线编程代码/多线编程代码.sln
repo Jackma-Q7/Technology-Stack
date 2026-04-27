@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1022
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "多线编程代码", "多线编程代码\多线编程代码.vcxproj", "{C930395F-DB5F-4AAC-AB98-D12E2B529077}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C930395F-DB5F-4AAC-AB98-D12E2B529077}.Debug|x64.ActiveCfg = Debug|x64
+		{C930395F-DB5F-4AAC-AB98-D12E2B529077}.Debug|x64.Build.0 = Debug|x64
+		{C930395F-DB5F-4AAC-AB98-D12E2B529077}.Debug|x86.ActiveCfg = Debug|Win32
+		{C930395F-DB5F-4AAC-AB98-D12E2B529077}.Debug|x86.Build.0 = Debug|Win32
+		{C930395F-DB5F-4AAC-AB98-D12E2B529077}.Release|x64.ActiveCfg = Release|x64
+		{C930395F-DB5F-4AAC-AB98-D12E2B529077}.Release|x64.Build.0 = Release|x64
+		{C930395F-DB5F-4AAC-AB98-D12E2B529077}.Release|x86.ActiveCfg = Release|Win32
+		{C930395F-DB5F-4AAC-AB98-D12E2B529077}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2CD52CBE-8499-4BD5-BDCD-BE60A88AA4A9}
+	EndGlobalSection
+EndGlobal
