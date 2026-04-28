@@ -1,5 +1,13 @@
 # 现代 C++11 核心特性详解
 
+## 视频地址与资料
+
+- [视频](https://www.bilibili.com/video/BV1VuWRefEnx?spm_id_from=333.788.videopod.episodes&vd_source=dce2b8521f90c5dbbc09257bff242f10)
+- [百度云](https://pan.baidu.com/s/1IiSgfFaiYUseWJtj0WHOfA?pwd=3u6p)
+- [PPT](PPT)
+- [配套代码](Code)
+- [练习项目](markdown/1‐01.接地气的使用CPP.md)
+
 ## 目录
 
 ### 一、基础入门
