@@ -31,3 +31,16 @@
 
 - [4-01.lambda函数的概念及用法](markdown/4-01.lambda函数的概念及用法.md)
 - [4-02.lambda函数与STL算法](markdown/4-02.lambda函数与STL算法.md)
+
+### 五、拷贝与移动
+
+- [5-01.拷贝控制及右值引用](markdown/5-01.拷贝控制及右值引用.md)
+- [5-02.移动语义](markdown/5-02.移动语义.md)
+- [5-03.move函数和STL容器中的移动语义](markdown/5-03.move函数和STL容器中的移动语义.md)
+- [5-04.移动语义的使用](markdown/5-04.移动语义的使用.md)
+
+### 六、Chrono库函数
+
+
+### 七、多线程
+
