@@ -49,6 +49,11 @@
 
 ### 六、Chrono库函数
 
+- [6-01.使用chrono库处理时间](markdown/6-01.使用chrono库处理时间.md)
+- [6-02.chrono库中的三种clock类型](markdown/6-02.chrono库中的三种clock类型.md)
+- [6-03.时间间隔](markdown/6-03.时间间隔.md)
+- [6-04.时间点和时间间隔类型转换](markdown/6-04.时间点和时间间隔类型转换.md)
+- [6-05.C++11chrono库之外](markdown/6-05.C++11chrono库之外.md)
 
 ### 七、多线程
 
