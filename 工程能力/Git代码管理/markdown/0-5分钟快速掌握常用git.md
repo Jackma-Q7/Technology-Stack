@@ -1,151 +1,216 @@
-## Git入门
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764558701369-f8233aaf-e6cd-47ff-b6e1-641510589a92.png)
+## Git配置和初始化仓库
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764558745463-b204d788-2706-42b3-a932-6cdfbea54fbf.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764558780912-d6a4c848-9727-4524-a0e9-81160fa75c01.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764558791593-dee686f7-50fe-4fab-a054-8cf5936a02c4.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764558816228-e65bba33-efd2-43bf-841e-957839436d5c.png)
+1.配置Git用户和邮箱
+```git
+git config --global user.name "Jackma"
+git config --global user.email "12345678@qq.com"
+```
+2.配置默认分支
+```git
+git config --global init.defaultBranch master
+```
+3.查看Git配置
+```git
+git config -l
+```
+4.初始化仓库
+```git
+git init
+```
+5.查看所有文件包括隐藏
+```git
+ls -a
+```
 
 ## 提交代码
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559212230-3ec7292b-78c7-4e5b-b5ec-ddc3c6c0e62b.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559238281-17c2d921-d952-4ed0-b805-4267c1dee2ae.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559252642-c70e48ce-26b6-4fe5-ad3d-7f5839812a19.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559281038-08f09e0e-bfb0-4ec1-96ea-db4854a5c448.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559292937-54c62242-a8e9-4375-963c-909876ba95b5.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559336981-257ba2d1-9154-4b66-a651-7301e762d3c1.png)
+1.提交1.txt到暂存区
+```git
+git add src/1.txt
+```
+2.提交一个目录到暂存区
+```git
+git add src
+```
+3.提交当前终端目录所有文件到暂存区
+```git
+git add .
+```
+4.将暂存区的所有文件踢出
+```git
+git reset
+```
+5.添加src目录到暂存区并且提交
+```git
+git add src
+git commit -m "注释内容"
+```
+6.查看提交日志
+```git
+git log
+```
 
 ## 使用Git忽略文件
-**创建.gitignore**
+0.**创建.gitignore**
+```bash
+touch .gitignore
+```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559497394-cbd2712d-7abb-4a85-8027-178c24187b4f.png)
+1.`.gitignore`文件
+```git
+build/
+install/
+log/
+```
+2.提交.gitignore文件
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559509110-5ea879ca-3da7-4447-b644-e9767acbb66b.png)
+```git
+git add .gitignore
+git commit -m "提交了.gitignore文件"
+```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1764559520459-ddbb37ef-a834-4c45-b914-716a651289e1.png)
+3.测试.gitignore是否生效
+
+```git
+git add .
+git commit -m "测试"
+```
 
 ## Git进阶
-**查看git状态**
+1.查看git状态
+```git
+git status
+```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093285071-ee3f1e6d-a0ac-4d5f-9ea3-c46aec86f2d0.png)
+2.查看修改内容
+```git
+git diff
+```
 
-**查看修改内容**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093315424-d893f364-a785-4ae3-bdb9-d3e97915c0e9.png)
-
-**查看单个修改内容**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093349243-95290f24-3db6-4930-8e9f-91ba426eb349.png)
+3.查看单个修改内容
+```git
+git diff 1.txt
+```
 
 ## Git进阶之学会撤销代码
-**没有提交也没有添加到缓冲区**
+1.没有提交也没有添加到缓冲区
+```git
+git cheakout 1.txt
+```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093561867-e0e5038a-23a0-4294-8783-19f28d96a040.png)
+2.添加到了缓冲区
+```git
+git reset 1.txt
+git cheakout 1.txt
+git status
+```
 
-**添加到了缓冲区**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093657627-6ae764ac-5f4f-4d7e-a513-9d76632b27c0.png)
-
-**提交了**
-
-**查看提交记录**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093748450-a8304d39-2ab4-427f-bd2e-1b9923dbef82.png)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093718248-f3825843-765c-485f-980f-9abf9bffa6fc.png)
+3.提交了
+3.1查看提交记录
+```git
+git log
+git reset commit的哈希值
+```
 
 ## **Git进阶之分支**
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093787140-84a48080-6bc7-4670-a93a-124fffea883c.png)
+<img src="../graph/0.0.png" width="440" height="110"/>
 
-**查看分支**
+1.查看分支
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093808839-ade206e0-cc9c-4f2a-915d-6bb6a265dfd8.png)
+```git
+git branch
+```
 
-**创建分支**
+2.创建分支
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093845405-307fea79-379a-4386-a7fb-adcf98a0e92b.png)
+```git
+git branch rolling
+```
+3.切换分支
 
-**切换分支**
+```git
+git cheackout rolling
+```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093862705-9ec4b5b6-82c1-48f8-abae-0d4fb3159a0d.png)
+4.切换和合并分支
 
-**切换和合并分支**
+```git
+git cheackout master
+git merge rolling
+```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093897731-08e7f66a-d9c1-4e2b-b828-0af7bc07a85e.png)
+5.删除分支
 
-**删除分支**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765093914675-c503e5a6-071b-4e6e-9c8d-48613d3608a1.png)
+```git
+git branch -D rolling
+```
 
 ## 将代码托管在Gitee
-**创建厂库**
+```
+git init                 # 初始化本地仓库
+git add .                # 添加所有文件
+git commit -m "说明"     # 提交代码
+git remote -v            # 查看远程仓库
+git remote add gitee 仓库地址   # 添加 Gitee 远程仓库
+git push -u gitee main   # 第一次推送到 Gitee
+git push                 # 后续直接推送
+```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765421442053-172ad877-00a5-4e96-8f7d-bc42915229c4.png)
+1.创建仓库
 
-**提交代码**
+<img src="../graph/0.1.png" width="2300" height="980"/>
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765421511393-52d8c2d0-3075-425c-85ca-3415c105381f.png)
+<img src="../graph/0.2.png" width="600" height="400"/>
+
+2.提交代码
+```bash
+git init                 # 初始化本地仓库
+git add .                # 添加所有文件
+git commit -m "说明"     # 提交代码
+git remote -v            # 查看远程仓库
+git remote add gitee 仓库地址   # 添加 Gitee 远程仓库,这里要登录和注意和github不要冲突
+git push -u gitee main   # 第一次推送到 Gitee
+git push                 # 后续直接推送
+```
+
 
 ## 将代码托管在GitHub
-**创建仓库**
+1.创建仓库
+👉 在 GitHub 新建仓库（不要初始化 README）
+```bash
+git init                      # 初始化仓库
+git add .                     # 添加文件
+git commit -m "first commit"  # 提交代码
+```
+2.推送本地仓库
+```bash
+git remote add origin 仓库地址   # 绑定 GitHub 仓库
+git branch -M main             # 统一主分支为 main
+git push -u origin main        # 第一次推送
+```
 
-**推送本地仓库**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765421680280-e1f12dd2-fe0a-4066-a7e5-a8ed9243a9ee.png)
-
-**仓库关联主分支修改和推送**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765421773328-beef11b0-1e1b-4465-a01c-cbafd5694bb5.png)
-
-**使用ssh-keygen生成公私钥**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765421830207-251a592c-8b95-4963-bbb8-0497e1dd3e98.png)
-
-**查看公钥**
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765421864380-664dc13d-0f1a-4060-a330-66099a2deb1e.png)
-
-登录 Github后访问 [https://github.com/settings/ssh/new](https://github.com/settings/ssh/new)，随便输人一个标题，并将刚刚生成的公钥复制粘贴到Key 一栏中，如图所示。单击左下角 Add SSH key按钮即可完成添加。
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1765421913352-110ff0fa-94c1-4237-bfb2-5343c4bd976d.png)
+3.修改代码后再次提交和推送
+```bash
+git add .                      # 添加修改
+git commit -m "update"         # 提交
+git push                       # 推送到 GitHub
+```
+4.使用ssh-keygen生成公私钥
+```bash
+ssh-keygen -t rsa -b 4096 -C "你的邮箱"   # 生成公私钥
+```
+👉 一路回车即可
+4.1查看公钥
+```bash
+cat ~/.ssh/id_rsa.pub          # 查看公钥内容
+```
+👉 复制内容到 GitHub：
+`Settings → SSH and GPG keys → New SSH key`
+4.2测试 SSH 是否成功
+```bash
+ssh -T git@github.com
+```
+出现：
+```bash
+Hi xxx! You've successfully authenticated
+```
+说明成功 ✅
