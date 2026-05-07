@@ -1,0 +1,976 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>-->
+    <title>36-从URL到网卡：如何全局观察网络数据流动？</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <style>
+        html {
+            color: #333;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-rendering: optimizelegibility;
+            font-family: Helvetica Neue, PingFang SC, Verdana, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif
+        }
+
+        html.borderbox *,
+        html.borderbox :after,
+        html.borderbox :before {
+            box-sizing: border-box
+        }
+
+        article,
+        aside,
+        blockquote,
+        body,
+        button,
+        code,
+        dd,
+        details,
+        dl,
+        dt,
+        fieldset,
+        figcaption,
+        figure,
+        footer,
+        form,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        header,
+        hr,
+        input,
+        legend,
+        li,
+        menu,
+        nav,
+        ol,
+        p,
+        pre,
+        section,
+        td,
+        textarea,
+        th,
+        ul {
+            margin: 0;
+            padding: 0
+        }
+
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        menu,
+        nav,
+        section {
+            display: block
+        }
+
+        audio,
+        canvas,
+        video {
+            display: inline-block
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, Helvetica, sans-serif
+        }
+
+        button::-moz-focus-inner,
+        input::-moz-focus-inner {
+            padding: 0;
+            border: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset,
+        img {
+            border: 0
+        }
+
+        blockquote {
+            position: relative;
+            color: #999;
+            font-weight: 400;
+            border-left: 1px solid #1abc9c;
+            padding-left: 1em;
+            margin: 1em 3em 1em 2em
+        }
+
+        @media only screen and (max-width: 640px) {
+            blockquote {
+                margin: 1em 0
+            }
+        }
+
+        abbr,
+        acronym {
+            border-bottom: 1px dotted;
+            font-variant: normal
+        }
+
+        abbr {
+            cursor: help
+        }
+
+        del {
+            text-decoration: line-through
+        }
+
+        address,
+        caption,
+        cite,
+        code,
+        dfn,
+        em,
+        th,
+        var {
+            font-style: normal;
+            font-weight: 400
+        }
+
+        ol,
+        ul {
+            list-style: none
+        }
+
+        caption,
+        th {
+            text-align: left
+        }
+
+        q:after,
+        q:before {
+            content: ""
+        }
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative
+        }
+
+        :root sub,
+        :root sup {
+            vertical-align: baseline
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        a {
+            color: #1abc9c
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        .typo a {
+            border-bottom: 1px solid #1abc9c
+        }
+
+        .typo a:hover {
+            border-bottom-color: #555;
+            color: #555
+        }
+
+        .typo a:hover,
+        a,
+        ins {
+            text-decoration: none
+        }
+
+        .typo-u,
+        u {
+            text-decoration: underline
+        }
+
+        mark {
+            background: #fffdd1;
+            border-bottom: 1px solid #ffedce;
+            padding: 2px;
+            margin: 0 5px
+        }
+
+        code,
+        pre,
+        pre tt {
+            font-family: Courier, Courier New, monospace
+        }
+
+        pre {
+            background: hsla(0, 0%, 97%, .7);
+            border: 1px solid #ddd;
+            padding: 1em 1.5em;
+            display: block;
+            -webkit-overflow-scrolling: touch
+        }
+
+        hr {
+            border: none;
+            border-bottom: 1px solid #cfcfcf;
+            margin-bottom: .8em;
+            height: 10px
+        }
+
+        .typo-small,
+        figcaption,
+        small {
+            font-size: .9em;
+            color: #888
+        }
+
+        b,
+        strong {
+            font-weight: 700;
+            color: #000
+        }
+
+        [draggable] {
+            cursor: move
+        }
+
+        .clearfix:after,
+        .clearfix:before {
+            content: "";
+            display: table
+        }
+
+        .clearfix:after {
+            clear: both
+        }
+
+        .clearfix {
+            zoom: 1
+        }
+
+        .textwrap,
+        .textwrap td,
+        .textwrap th {
+            word-wrap: break-word;
+            word-break: break-all
+        }
+
+        .textwrap-table {
+            table-layout: fixed
+        }
+
+        .serif {
+            font-family: Palatino, Optima, Georgia, serif
+        }
+
+        .typo-dl,
+        .typo-form,
+        .typo-hr,
+        .typo-ol,
+        .typo-p,
+        .typo-pre,
+        .typo-table,
+        .typo-ul,
+        .typo dl,
+        .typo form,
+        .typo hr,
+        .typo ol,
+        .typo p,
+        .typo pre,
+        .typo table,
+        .typo ul,
+        blockquote {
+            margin-bottom: 1rem
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: PingFang SC, Helvetica Neue, Verdana, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+            color: #000;
+            line-height: 1.35
+        }
+
+        .typo-h1,
+        .typo-h2,
+        .typo-h3,
+        .typo-h4,
+        .typo-h5,
+        .typo-h6,
+        .typo h1,
+        .typo h2,
+        .typo h3,
+        .typo h4,
+        .typo h5,
+        .typo h6 {
+            margin-top: 1.2em;
+            margin-bottom: .6em;
+            line-height: 1.35
+        }
+
+        .typo-h1,
+        .typo h1 {
+            font-size: 2em
+        }
+
+        .typo-h2,
+        .typo h2 {
+            font-size: 1.8em
+        }
+
+        .typo-h3,
+        .typo h3 {
+            font-size: 1.6em
+        }
+
+        .typo-h4,
+        .typo h4 {
+            font-size: 1.4em
+        }
+
+        .typo-h5,
+        .typo-h6,
+        .typo h5,
+        .typo h6 {
+            font-size: 1.2em
+        }
+
+        .typo-ul,
+        .typo ul {
+            margin-left: 1.3em;
+            list-style: disc
+        }
+
+        .typo-ol,
+        .typo ol {
+            list-style: decimal;
+            margin-left: 1.9em
+        }
+
+        .typo-ol ol,
+        .typo-ol ul,
+        .typo-ul ol,
+        .typo-ul ul,
+        .typo li ol,
+        .typo li ul {
+            margin-bottom: .8em;
+            margin-left: 2em
+        }
+
+        .typo-ol ul,
+        .typo-ul ul,
+        .typo li ul {
+            list-style: circle
+        }
+
+        .typo-table td,
+        .typo-table th,
+        .typo table caption,
+        .typo table td,
+        .typo table th {
+            border: 1px solid #ddd;
+            padding: .5em 1em;
+            color: #666
+        }
+
+        .typo-table th,
+        .typo table th {
+            background: #fbfbfb
+        }
+
+        .typo-table thead th,
+        .typo table thead th {
+            background: hsla(0, 0%, 95%, .7)
+        }
+
+        .typo table caption {
+            border-bottom: none
+        }
+
+        .typo-input,
+        .typo-textarea {
+            -webkit-appearance: none;
+            border-radius: 0
+        }
+
+        .typo-em,
+        .typo em,
+        caption,
+        legend {
+            color: #000;
+            font-weight: inherit
+        }
+
+        .typo-em {
+            position: relative
+        }
+
+        .typo-em:after {
+            position: absolute;
+            top: .65em;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            content: "\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB"
+        }
+
+        .typo img {
+            max-width: 100%
+        }
+
+        .common-content {
+            font-weight: 400;
+            color: #353535;
+            line-height: 1.75rem;
+            white-space: normal;
+            word-break: normal;
+            font-size: 1rem
+        }
+
+        .common-content img {
+            display: block;
+            max-width: 100%;
+            background-color: #eee
+        }
+
+        .common-content audio,
+        .common-content video {
+            width: 100%;
+            background-color: #eee
+        }
+
+        .common-content center,
+        .common-content font {
+            margin-top: 1rem;
+            display: inline-block
+        }
+
+        .common-content center {
+            width: 100%
+        }
+
+        .common-content pre {
+            margin-top: 1rem;
+            padding-left: 0;
+            padding-right: 0;
+            position: relative;
+            overflow: hidden
+        }
+
+        .common-content pre code {
+            font-size: .8rem;
+            font-family: Consolas, Liberation Mono, Menlo, monospace, Courier;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            overflow-x: auto
+        }
+
+        .common-content hr {
+            border: none;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid #f5f5f5;
+            height: 1px;
+            background: none
+        }
+
+        .common-content b,
+        .common-content h1,
+        .common-content h2,
+        .common-content h3,
+        .common-content h4,
+        .common-content h5,
+        .common-content strong {
+            font-weight: 700
+        }
+
+        .common-content h1,
+        .common-content h2 {
+            font-size: 1.125rem;
+            margin-bottom: .45rem
+        }
+
+        .common-content h3,
+        .common-content h4,
+        .common-content h5 {
+            font-size: 1rem;
+            margin-bottom: .45rem
+        }
+
+        .common-content p {
+            font-weight: 400;
+            color: #353535;
+            margin-top: .15rem
+        }
+
+        .common-content .orange {
+            color: #ff5a05
+        }
+
+        .common-content .reference {
+            font-size: 1rem;
+            color: #888
+        }
+
+        .custom-rich-content h1 {
+            margin-top: 0;
+            font-weight: 400;
+            font-size: 15.25px;
+            border-bottom: 1px solid #eee;
+            line-height: 2.8
+        }
+
+        .custom-rich-content li,
+        .custom-rich-content p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6
+        }
+
+        table.hljs-ln {
+            margin-bottom: 0;
+            border-spacing: 0;
+            border-collapse: collapse
+        }
+
+        table.hljs-ln,
+        table.hljs-ln tbody,
+        table.hljs-ln td,
+        table.hljs-ln tr {
+            box-sizing: border-box
+        }
+
+        table.hljs-ln td {
+            padding: 0;
+            border: 0
+        }
+
+        table.hljs-ln td.hljs-ln-numbers {
+            min-width: 15px;
+            color: rgba(27, 31, 35, .3);
+            text-align: right;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none
+        }
+
+        table.hljs-ln td.hljs-ln-code,
+        table.hljs-ln td.hljs-ln-numbers {
+            font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+            font-size: 12px;
+            line-height: 20px;
+            vertical-align: top
+        }
+
+        table.hljs-ln td.hljs-ln-code {
+            position: relative;
+            padding-right: 10px;
+            padding-left: 10px;
+            overflow: visible;
+            color: #24292e;
+            word-wrap: normal;
+            white-space: pre
+        }
+
+        video::-webkit-media-controls {
+            overflow: hidden !important
+        }
+
+        video::-webkit-media-controls-enclosure {
+            width: calc(100% + 32px);
+            margin-left: auto
+        }
+
+        ._29HP61GA_0 {
+            max-width:800px;
+            margin:0 auto;
+            margin-bottom: 20px;
+            font-weight: 400;
+            color: #353535;
+            line-height: 1.76;
+            white-space: normal;
+            word-break: normal;
+            font-size: 17px;
+            -webkit-transition: background-color .3s ease;
+            transition: background-color .3s ease
+        }
+
+        ._29HP61GA_0 .MathJax_Display {
+            overflow: auto
+        }
+
+        ._29HP61GA_0 .poster {
+            position: fixed;
+            left: -10000px;
+            top: -10000px;
+            overflow: hidden;
+            padding: 1rem;
+            background: #ececec
+        }
+
+        ._29HP61GA_0 .richcontent-pre-copy {
+            font-size: 13px;
+            color: #888;
+            position: absolute;
+            right: 1em;
+            top: .5em;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        ._29HP61GA_0 .richcontent-pre-copy .iconfont {
+            font-size: 12px;
+            margin-right: .2em
+        }
+
+        ._29HP61GA_0 a {
+            color: #fa8919;
+            border-bottom: 1px solid #fa8919
+        }
+
+        ._29HP61GA_0 img {
+            display: block;
+            max-width: 100%;
+            position: relative;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            background-color: #eee;
+            vertical-align: top;
+            border-radius: 0
+        }
+
+        ._29HP61GA_0 audio,
+        ._29HP61GA_0 video {
+            width: 100%;
+            background-color: #eee
+        }
+
+        ._29HP61GA_0 pre {
+            margin-top: 16px;
+            padding: 34px 0 0;
+            margin-bottom: 30px;
+            position: relative;
+            border-radius: 6px;
+            background: rgba(246, 247, 251, .749);
+            border: 0
+        }
+
+        ._29HP61GA_0 pre code {
+            font-size: 12px;
+            font-family: Consolas, Liberation Mono, Menlo, monospace, Courier;
+            display: block;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin-left: 16px;
+            margin-right: 16px;
+            overflow-x: scroll
+        }
+
+        ._29HP61GA_0 pre code:after {
+            content: "";
+            height: 30px;
+            width: 100%;
+            display: block
+        }
+
+        ._29HP61GA_0 hr {
+            border: none;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid #f5f5f5;
+            height: 1px;
+            background: none
+        }
+
+        ._29HP61GA_0 h1,
+        ._29HP61GA_0 h2,
+        ._29HP61GA_0 h3,
+        ._29HP61GA_0 h4,
+        ._29HP61GA_0 h5 {
+            margin-bottom: 20px;
+            margin-top: 0;
+            font-weight: 700
+        }
+
+        ._29HP61GA_0 b,
+        ._29HP61GA_0 strong {
+            font-weight: 700
+        }
+
+        ._29HP61GA_0 h1 {
+            font-size: 21px
+        }
+
+        ._29HP61GA_0 h2 {
+            font-size: 20px
+        }
+
+        ._29HP61GA_0 h3 {
+            font-size: 19px
+        }
+
+        ._29HP61GA_0 h4 {
+            font-size: 18px
+        }
+
+        ._29HP61GA_0 h5 {
+            font-size: 17px
+        }
+
+        ._29HP61GA_0 center,
+        ._29HP61GA_0 p {
+            font-weight: 400;
+            color: #353535;
+            margin-top: 0;
+            margin-bottom: 30px;
+            word-break: break-word
+        }
+
+        ._29HP61GA_0 center {
+            text-align: center
+        }
+
+        ._29HP61GA_0 blockquote {
+            margin-top: 0;
+            margin-bottom: 34px;
+            border-left: 3px solid #e8e8e8;
+            padding-left: 17px;
+            color: #353535
+        }
+
+        ._29HP61GA_0 blockquote p {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        ._29HP61GA_0 ol,
+        ._29HP61GA_0 ul {
+            margin-bottom: 30px
+        }
+
+        ._29HP61GA_0 ol p,
+        ._29HP61GA_0 ul p {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        ._29HP61GA_0 ol {
+            list-style: decimal;
+            margin-left: 20px
+        }
+
+        ._29HP61GA_0 ul li {
+            padding-left: 17px;
+            position: relative;
+            margin-bottom: 10px
+        }
+
+        ._29HP61GA_0 ul li:after {
+            content: "";
+            height: 6px;
+            width: 6px;
+            border-radius: 50%;
+            background: #353535;
+            position: absolute;
+            top: 10px;
+            left: 0
+        }
+
+        ._29HP61GA_0 .orange {
+            color: #fa8919
+        }
+
+        ._29HP61GA_0 .reference {
+            color: #888
+        }
+
+        ._29HP61GA_0 .m-right {
+            text-align: right
+        }
+
+        ._29HP61GA_0 .m-center {
+            text-align: center;
+            display: block
+        }
+
+        ._29HP61GA_0 .m-gray {
+            color: #888
+        }
+
+        ._29HP61GA_0 .m-small {
+            font-size: 15px
+        }
+
+        ._29HP61GA_0 table.hljs-ln {
+            margin-bottom: 0;
+            border-spacing: 0;
+            border-collapse: collapse
+        }
+
+        ._29HP61GA_0 table.hljs-ln,
+        ._29HP61GA_0 table.hljs-ln tbody,
+        ._29HP61GA_0 table.hljs-ln td,
+        ._29HP61GA_0 table.hljs-ln tr {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        ._29HP61GA_0 table.hljs-ln td {
+            padding: 0;
+            border: 0
+        }
+
+        ._29HP61GA_0 table.hljs-ln td.hljs-ln-numbers {
+            min-width: 15px;
+            font-size: 12px;
+            color: rgba(27, 31, 35, .3);
+            text-align: right;
+            white-space: nowrap;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        ._29HP61GA_0 table.hljs-ln td.hljs-ln-code,
+        ._29HP61GA_0 table.hljs-ln td.hljs-ln-numbers {
+            font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+            line-height: 20px;
+            vertical-align: top
+        }
+
+        ._29HP61GA_0 table.hljs-ln td.hljs-ln-code {
+            position: relative;
+            padding-right: 10px;
+            padding-left: 10px;
+            overflow: visible;
+            font-size: 13px;
+            color: #666;
+            word-wrap: normal;
+            white-space: pre
+        }
+
+    </style>
+</head>
+<body>
+<div class="_29HP61GA_0">
+<h1>36-从URL到网卡：如何全局观察网络数据流动？</h1>
+<p>你好，我是 LMOS。</p><p>从这节课起，我们就要开始学习网络篇的内容了。网络是一个极其宏大的知识结构，我会通过五节课带你了解计算机网络的关键内容。</p><p>具体我们是这样安排的。作为网络篇的开始，今天这节课我会从一个面试中高频出现的问题切入，带你梳理从输入URL到网卡的网络数据流动过程中都发生了什么事。如果你真正理解了这个过程，相信你对整个网络架构的认知也会有质的飞跃。</p><p>网络篇的第二节课，我会带你分析网络数据包在内核中如何流转；第三节课，我们一起探讨互联网架构演进过程，并动手做一次协议栈移植；最后两节课，我还是照例带你看看Linux，让你理解套接字在Linux内核中怎样实现。</p><h2>从一道经典面试题说起</h2><p>下面我们一起来看看一个问题，估计你多多少少会觉得熟悉。</p><blockquote>
+<p>输入URL，从一个请求到响应都发生了什么事？</p>
+</blockquote><p>没错，这是一道非常经典的面试题，你在网上随便一搜，也会找到各种各样的资料解答这道题。</p><p>不过啊，那些答案都有一些笼统，今天我会尽量详细地为你梳理一下这个过程。跟着我学完这节课，你就能明白，为什么面试官对这道题青睐有加了。</p><p>这里我先给你概括一下全过程，让你有个整体印象。</p><p>1.常规的网络交互过程是从客户端发起网络请求，用户态的应用程序（浏览器）会生成HTTP请求报文、并通过DNS协议查找到对应的远端IP地址。<br>
+2.在套接字生成之后进入内核态，浏览器会委托操作系统内核协议栈中的上半部分，也就是TCP/UDP协议发起连接请求。<br>
+3.然后经由协议栈下半部分的IP协议进行封装，使数据包具有远程定位能力。<br>
+4.经过MAC层处理，找到接收方的目标MAC地址。<br>
+5.最终数据包在经过网卡转化成电信号经过交换机、路由器发送到服务端，服务端经过处理拿到数据，再通过各种网络协议把数据响应给客户端。<br>
+6.客户端拿到数据进行渲染。<br>
+7.客户端和服务端之间反复交换数据，客户端的页面数据就会发生变化。</p><!-- [[[read_end]]] --><p>你有没有发现，刚才的过程中，我们提到了多个层级和网络协议，那么网络为什么要分层呢？网络协议又是什么呢？请听我给你一一道来。</p><h2>前置知识：网络分层和网络协议</h2><p>在计算机网络时代初期，各大厂商推出了不同的网络架构和标准，为统一标准，国际标准化组织ISO推出了统一的OSI参考模型。</p><p>当前网络主要遵循的IEEE 802.3标准，就是基于OSI模型提出的，主要定义的是<strong>物理层和数据链路层有线物理数据流传输的标准</strong>。</p><p>那么问题来了，网络为什么要分层呢？</p><p>我们都知道网络是复杂的。对于复杂的问题，我们自然要<strong>通过分层处理简化问题难度，降低复杂度</strong>，由于分层后的各层之间相互独立，我们可以把大问题分割成小问题。同样，分层也保证了网络的松耦合和相对的灵活，分层拆分后易于各层的实现和维护，也方便了各层的后续扩展。</p><p>网络分层解决了网络复杂的问题，在网络中传输数据中，我们对<strong>不同设备之间的传输数据的格式，需要定义一个数据标准，所以就有了网络协议。</strong></p><p>网络协议是双方通信的一种约定，以便双方都可以理解对方的信息。接下来我们就用OSI协议体系中广泛应用的<strong>TCP/IP层的体系结构</strong>来分析整个过程，你重点需要关注的是<strong>数据处理的过程和网络协议。</strong></p><p><img src="https://static001.geekbang.org/resource/image/e6/53/e6c8059c94c64406412a0a4d3f385753.jpg?wh=5005x2037" alt="" title="ISO_OSI通信流转"></p><h2>发起请求阶段（应用层）</h2><p>下面我们首先来看看网络应用层，它是最上层的，也是我们能直接接触到的。</p><p>我们的电脑或⼿机使⽤的应⽤软件都是在应⽤层实现，所以应⽤层只需要专注于为⽤户提供应⽤功能，不⽤去关⼼数据是如何传输的。你可以这样理解，应⽤层是⼯作在操作系统中的⽤户态。</p><p>我们依然从浏览器中输入URL，开始了解网络应用层的工作流程。</p><h3>用户输入：在浏览器中输入URL</h3><p>我们在浏览器中输入URL的时候，浏览器已经开始工作了。浏览器会根据我们的输入内容，先匹配对应的URL以及关键词，给出输入建议，同时校验URL的合法性，并且会在URL前后补全URL。</p><p>为了帮你更好地理解，我给你举个例子说明。我们以输入cosmos.com为例，首先浏览器会判断出这是一个合法的URL，并且会补全为http://www.cosmos.com。</p><p>其中http为协议，cosmos.com为网络地址，每个网络栏的地址都符合通用 URI 的语法。URI 一般语法由五个分层序列组成。后面的第一行内容我给你列了URL的格式，第二行做了行为说明。</p><pre><code>URI = scheme:[//authority]path[?query][#fragment]
+
+URI = 方案:[//授权]路径[?查询][#片段ID]
+</code></pre><p>接着，浏览器从URL中会提取出网络的地址，也叫做主机名（host），一般主机名可以为域名或IP地址，此处使用域名。</p><p>对URL进行解析之后，浏览器确定了服务器的主机名和请求路径，接下来就是根据这些信息来生成HTTP请求消息了，那么到现在为止，我们的HTTP请求是否已经发出了呢？并不是这样的，我们接着往下看。</p><h3>网络请求前：查看浏览器缓存</h3><p>浏览器在HTTP报文生成完成后，它并不是马上就开始网络请求的。</p><p>在请求发出之前，浏览器首先会检查保存在本地计算机中的缓存，如果访问过当前的URL，会先进入缓存中查询是否有要请求的文件。此时存在的缓存有路由器缓存、DNS缓存、浏览器缓存、Service Worker、Memory Cache、Disk Cache、Push Cache、系统缓存等。</p><p>在这里我们看一下系统缓存，如果在浏览器缓存里没有命中缓存，浏览器会做一个系统调用获得系统缓存中的记录，就是我们的gethostbyname方法，它的作用是通过域名获取IP地址。这个方法会返回如下结构。</p><pre><code>struct hostent
+{
+    char    *h_name;// 主机的别名.www.cosmos.com就是google他自己的别名  
+    char    **h_aliases;// 主机ip地址的类型，到底是ipv4(AF_INET)，还是pv6(AF_INET6)
+    int     h_addrtype;// 主机ip地址的长度
+    int     h_length;// 主机ip地址的长度
+    char    **h_addr_list; // 主机的ip地址，注意，这个是以网络字节序存储的
+    #define h_addr h_addr_list[0] 这个函数，是将类型为af的网络地址结构src，转换成主机序的字符串形式，存放在长度为cnt的字符串中。返回指向dst的一个指针。如果函数调用错误，返回值是NULL
+};
+</code></pre><p>如果没有访问过当前的URL，就会跳过缓存这一步，这时我们就会进入网络操作了。</p><h3>域名解析：DNS</h3><p>接着上一小节在浏览器确认了输入的URL之前没有访问，浏览器就会生成对应的HTTP请求，这时浏览器需要委托操作系统将HTTP报文发送到对应的服务端。在发送消息之前，还有一个工作需要做，就是查找服务端的IP地址，因为操作系统在发送消息时，必须知道对方的IP地址才可以发送。</p><p>但是由于IP地址由一串数字组成，不够语义化，为方便你记忆，我们将IP地址映射为域名，于是就有这样一个服务，维护了IP和域名的映射关系，它就是非常重要的基础设施——DNS服务器。DNS服务器是一个分布式数据库，分布在世界各地。</p><p>为提高效率，DNS是按照一定的结构进行组织的，不同层次之间按照英文句点.来分割。</p><p>在域名中，我们的层级关系是按照从左到右、从低到高排列的，不同层级由低到高维护了一个树形结构，最高一级的根节点为root节点，就是我们所谓的根域名服务器，因此cosmos.com完整的域名应该是cosmos.com.，后面的 .相当于.root。</p><p>但是所有域名的顶级域名都一样，因此被省略；再下一级.com为顶级域名；再下一级的cosmos为权威域名。</p><p>因为这是一个树形结构，所以客户端只要请求到一个DNS服务器，就可以一层层递归和迭代查找到所有的DNS服务器了。按照由高到低的优先级，DNS域名解析的过程排列如下。</p><pre><code>DNS解析 &gt; 浏览器DNS缓存 &gt; hosts文件 &gt; 本地DNS服务器 &gt; ISP DNS服务器
+</code></pre><h2>操作系统协议栈（传输层和网络层）</h2><p>现在我们已经根据URL拿到需要请求的唯一地址了，接下来就要委托操作系统将HTTP报文发送出去了，这个过程由操作系统中的协议栈负责处理。</p><p>TCP/IP协议栈是现在使用最广泛的网络协议栈，Internet就是建立在TCP/IP协议栈基础上的。除TCP/IP协议栈外，我们的操作系统内核可以支持多个不同的协议栈，如后续我们将会用到的LwIp。</p><p>协议栈内部分为几部分，分别承担着不同的作用。协议栈的上半部分负责和应用层通过套接字（Socket）进行交互，它可以是TCP协议或UDP协议。应用层会委托协议栈的上部分完成收发数据的工作；而协议栈的下半部分则负责把数据发送给到指定方的IP协议，由IP协议连接下层的网卡驱动。</p><h3>可靠性传输：建立TCP连接</h3><p>浏览器通过DNS解析拿到Cosmos的 IP地址后， 浏览器取出 URL 的端口（HTTP默认80，HTTPS默认443）。随即浏览器会委托操作系统协议栈的上半部分创建新的套接字（Socket）向对应的IP发起 <code>TCP</code> 连接请求。</p><p>为了确保通信的可靠性，建立TCP首先会先进行三次握手的操作，我们可以结合后面的图示理解。</p><p><img src="https://static001.geekbang.org/resource/image/04/5e/042yyb2c5b2fa5d3a6b575cb83e6235e.jpg?wh=3610x2149" alt="" title="TCP握手示意图"></p><p>那么TCP的三次握手操作，是如何进行的呢？具体的操作步骤如下。</p><p>1.首先浏览器作为客户端会发送一个小的TCP分组，这个分组设置了一个特殊的 <code>SYN</code> 标记，用来表示这是一条连接请求。同时设置初始序列号为 <code>x</code> 赋值给 <code>Seq</code> （这次捕获组的数据为: SYN=1, Seq=1）。<br>
+2.服务器接受到客户端的 <code>SYN</code> 连接后，会选择服务器初始序号 <code>y</code>。同时向客户端发送含有连接确认（<code>SYN+ACK</code>）、<code>Seq=0</code>（本例中的服务器初始序号）、<code>Ack=1</code>（客户端的序号x +1）等信息的 TCP 分组。<br>
+3.客户端收到了服务器的确定字段后，向服务器发送带有 <code>ACK=1</code>、<code>Seq=1</code> (x+1)、<code>Ack=1</code> （服务器 Ack 信息的拷贝）等字段的TCP分组给服务器。</p><p>即使是发送一个TCP分组，也是一次网络通信，那么对于TCP层来说，这一次通信的数据前面就要包含一个TCP包头，向下层表明这是个TCP数据包。TCP包头其实是一个数据结构，我为你准备了一幅图，以便理解。</p><p>下图就是TCP的包头，对于TCP头部来说，以下几个字段是很重要的，你要格外关注。</p><p><img src="https://static001.geekbang.org/resource/image/0e/66/0e1c5beddfbc483f91863d8396583466.jpg?wh=1198x421" alt="" title="TCP包头"></p><p>首先，源端口号（Source port）和目标端口号（Destinantion port）是不可少的，如果没有这两个端口号，数据就不知道应该发给哪个应用。</p><p>其次，你需要注意的是一串有序数字Sequence number，这个序号保证了TCP报文是有序被接受的，解决网络包的乱序问题。</p><p>之后的Acknowledgement number是确认号，只有对方确认收到，否则会一直重发，这个是防止数据包丢失的。</p><p>紧接着还有一些状态位，由于TCP是有状态的，是用于维护双方连接的状态，状态发生变更会更新双方的连接状态。后面还有一个，窗口大小Window Size，用于流量控制。</p><p>TCP层封装好了数据包，会将这个TCP数据包向下层发送，而TCP层的下层就是IP层，下面我们一起去瞧一瞧完成目的地定位的IP层。</p><h3>目的地定位：IP层</h3><p>TCP在维护状态的过程中，都需要委托IP层将数据封装，发送和处理网络数据包进入网络层。<strong>IP协议是TCP/IP协议栈的核心</strong>，IP协议中规定了在Internet上进行通信时应遵循的规则，包括IP数据包应如何构成、数据包的路由等，而IP层实现了网络上的点对点通信。</p><p>我们首先来看看IP层处理上层网络数据包的过程，网络数据包（无论输入数据包还是输出数据包）进入网络层后，IP层协议的函数都要对网络数据包做后面这5步操作。</p><p>1.数据包校验和检验<br>
+2.防火墙对数据包过滤<br>
+3.IP选项处理<br>
+4.数据分片和重组<br>
+5.接收、发送和前送</p><p>为了完成上述操作，IP 层被设计成三个部分，分别是 <strong>IP 寻址、路由和分包组包</strong>。现在我们并不关注这三个部分的具体实现，仅仅是熟悉这个流程就好了。</p><p>其实在网络通信的过程中，每个设备都必须拥有自己的IP地址才可以完成通信，我们的IP地址是以四组八位的组合进行约定，每组以.号隔开，再转化为十进制的方式。这里要注意，IP地址并不是以主机数目进行配置的，而是根据<strong>网卡数</strong>来进行。</p><p>有了IP地址，就可以通信了，但IP层仍然是一个软件实现的功能逻辑层，那它如何完成通信呢，答案是不能直接完成通信，它只是把IP地址及相关信息组装成一个IP头，把这个IP头放在网络数据的前面，形成了IP包，最后把这个IP包发送给IP层的下一层组件就行了，IP头的格式如下所示。</p><p><img src="https://static001.geekbang.org/resource/image/52/d9/52b74e557b83abcd1b77eb2f90660bd9.jpg?wh=3405x1654" alt="" title="IP头部"></p><p>有了IP头的网络数据，就有了发送目的地的信息，那么该如何才能将报文发送到目的地呢？这就要请MAC出场了，这个MAC层，就是IP层的下一层组件。下面我们一起进入MAC层。</p><h2>点对点传输：MAC（链路层）</h2><p>我们经常听说网卡MAC地址，这个MAC地址指的就是计算机网卡的物理地址（Physical Address），MAC地址被固化到网卡中，用来标识一个网络设备。MAC地址是唯一且无重复的，由国际标准化组织分配，用来确保网络中的每个网卡是唯一的。</p><p>网络数据在IP层中加上IP头后，形成了IP包，现在进入MAC层了，我们就需要对IP包加上MAC头，这个MAC头包括<strong>发送方的MAC头</strong>和<strong>接收方的MAC头</strong>，用于两个物理地址点对点的传输；此外还有一个头部字段为<strong>协议类型</strong>，在常规的TCP/IP协议中，MAC头的协议类型只有IP和ARP两种。</p><p>MAC头格式如下所示。</p><p><img src="https://static001.geekbang.org/resource/image/56/b4/568526aeac098ca9290a39e539f27cb4.jpg?wh=2958x652" alt="" title="MAC头部"></p><p>发送方的MAC头比较容易获取，读取当前设备网卡的MAC地址就可以获取，而接收方的MAC头则需要通过ARP协议在网络中携带IP地址，在一个网络中发送广播信息，这样就能获取这个网络中的IP地址对应的MAC地址，然后就能给我们的IP包加上MAC头了，最后这个加上MAC头的IP包，成为一个MAC数据包，就可以准备发送出去了。</p><p>下面我们一起进入最后的阶段，数据的发送，即网络层中的最低层——物理层。</p><h2>电信号的出口：网卡（物理层）</h2><p>现在我们拿到了经过层层处理过的数据包，数据包只是一串二进制数据，然而我们都知道，网络上的数据传送，是依赖电信号的，所以我们现在需要将数据包转化为电信号，才能在物理的网线上面传输。</p><p>那么数据包是如何被转换电信号的呢，数据包通过网络协议栈的层层处理，最终得到了MAC数据包，这个MAC数据包会交给网卡驱动程序，而网卡驱动程序会将MAC数据包写入网卡的缓冲区（网卡上的内存）.</p><p>然后，网卡会在MAC数据包的起止位置加入起止帧和校验序列，最后网卡会将加入起止帧和校验序列的MAC数据包转化为电信号，发送出去。</p><h2>客户端服务端的持续数据交换（应用层）</h2><p>现在，我们的数据终于通过网卡离开了计算机，进入到局域网，通过局域网中的设备，集线器、交换机和路由器等，数据会进入到互联网，最终到达目标服务器。</p><p>接着，服务器就会先取下数据包的MAC头部，查看是否匹配自己MAC地址。然后继续取下数据包的IP头，数据包中的目标IP地址和自己的IP地址匹配，再根据IP头中协议项，知道自己上层是TCP协议。</p><p>之后，还要继续取下数据包TCP的头。完成一系列的顺序校验和状态变更后，TCP头部里面还有端口号，此时我们的HTTP 的server正在监听这个端口号，就把数据包再发给对应的HTTP进程。</p><p>HTTP进程从服务器中拿到对应的资源（HTML文件），再交给操作系统对数据进行处理。然后再重复上面的过程，层层携带TCP、IP、MAC 头部。</p><p>接下来数据从网卡出去，到达客户端，再重复刚才的过程拿到相应数据。客户端拿到对应的HTML资源，浏览器就可以开始解析渲染了，这步操作完成后，用户最终就能通过浏览器看到相应的页面。</p><p>我为你画了两幅图，来描述上述过程，第一幅是网络协议各层之间封装与拆封数据的过程，如下所示。</p><p><img src="https://static001.geekbang.org/resource/image/10/74/104ef1849ccc3c7yyc834b9a774ff974.jpg?wh=3305x1270" alt="" title="TCP_IP协议栈"></p><p>下面的第二幅图，是描述客户端与服务器之间用网络协议连接通信的过程，如下所示。</p><p><img src="https://static001.geekbang.org/resource/image/80/a7/804bd3f0a0063bcfd4d1f8d8b13ef0a7.jpg?wh=3514x2939" alt="" title="交互过程示意图"></p><p>我们可以看到，此时客户端和服务端之间通过TCP协议维护了一个连接状态，如果客户端需要关闭网络，那么会进行四次挥手，两边的网络传输过程至此完成。</p><h2>重点回顾</h2><p>好，这节课的内容告一段落了，我来给你梳理一下本节课的重点，如下所示。</p><p>1.首先，常规的网络交互过程是从客户端发起网络请求，网络数据包经过各类网络协议的处理，为了约定一套不同设备都能理解的约定，我们引入了网络协议。<br>
+2.然后，在不同的网络协议处理下，给我们的网络数据包加上了各种头部，这保证了网络数据在各层物理设备的流转下可以正确抵达目的地。收到处理后的网络数据包后，接受端再通过网络协议将头部字段去除，得到原始的网络数据。<br>
+3.最后，这节课你需要重点理解<strong>网络协议对数据的处理过程，以及处理过程中的不同协议的数据结构和关键头部字段。</strong></p><h2>思考题</h2><p>我们这节课从宏观的角度分析了网络数据的运转，但是在内核中网络数据包怎么运转的呢？请你简单描述这个过程。</p><p>欢迎你在留言区跟我交流讨论，也欢迎你把这节课分享给你的同事、朋友。</p><p>我是LMOS，我们下节课见！</p><h2>精选留言：</h2>
+        <ul>
+        
+<li>
+    <div>
+        <div style="color: #888;font-size:15.25px;font-weight:400;            line-height:1.2">
+            青玉白露  2021-07-30 09:47:34
+        </div>
+        <div style="color:#353535;font-weight:400;white-space:normal;            word-break:break-all;line-height:1.6">
+            在内核中是分层级处理的，一层包一层。 
+        </div>
+        <br/>
+<div>
+    <div style="color:#888;font-size:15.25px;font-weight:400;        line-height:1.2">作者回复2021-07-30 17:15:02</div>
+    <div style="color:#353535;font-weight:400;white-space:normal;        word-break:break-all;line-height:1.6">哈哈 也对</div>
+</div>
+            
+    </div>
+</li>
+            
+<br/>
+
+<li>
+    <div>
+        <div style="color: #888;font-size:15.25px;font-weight:400;            line-height:1.2">
+            pedro  2021-07-30 07:37:39
+        </div>
+        <div style="color:#353535;font-weight:400;white-space:normal;            word-break:break-all;line-height:1.6">
+            内核接管应用层数据后依次将其打包为tcp包(传输层)，帧(数据链路层)，并数据其从内核拷贝到网卡，后续由网卡负责数据的发送；反过来内核收到网卡数据后层层解析，并将数据包交给用户态应用程序。 
+        </div>
+        <br/>
+<div>
+    <div style="color:#888;font-size:15.25px;font-weight:400;        line-height:1.2">作者回复2021-07-30 09:12:16</div>
+    <div style="color:#353535;font-weight:400;white-space:normal;        word-break:break-all;line-height:1.6">哈哈 铁子 快</div>
+</div>
+            
+    </div>
+</li>
+            
+<br/>
+
+<li>
+    <div>
+        <div style="color: #888;font-size:15.25px;font-weight:400;            line-height:1.2">
+            springXu  2021-07-30 02:01:01
+        </div>
+        <div style="color:#353535;font-weight:400;white-space:normal;            word-break:break-all;line-height:1.6">
+            这道思考题是下节课的内容么？  
+        </div>
+        <br/>
+<div>
+    <div style="color:#888;font-size:15.25px;font-weight:400;        line-height:1.2">作者回复2021-07-30 09:12:29</div>
+    <div style="color:#353535;font-weight:400;white-space:normal;        word-break:break-all;line-height:1.6">哈哈 </div>
+</div>
+            
+    </div>
+</li>
+            </ul>
+</div>
+</body>
+</html>

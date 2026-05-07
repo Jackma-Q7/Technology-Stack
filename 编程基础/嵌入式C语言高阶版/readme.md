@@ -49,3 +49,7 @@
 - [6.2-修饰符-const](markdown/6.2-修饰符-const.md)
 - [6.3-signed与unsigned隐式转换](markdown/6.3-signed与unsigned隐式转换.md)
 - [6.4-复杂类型定义](markdown/6.4-复杂类型定义.md)
+
+## 日志
+
+完成于 2026.5.7 in chongqing
