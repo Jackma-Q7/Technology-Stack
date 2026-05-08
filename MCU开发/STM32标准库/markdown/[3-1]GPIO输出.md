@@ -29,6 +29,7 @@ GPIO（General Purpose Input Output）通用输入输出口
 模拟输入
 
 <img src="../graph/3.1.5.png" width="729" height="439"/>
+
 开漏/推挽输出
 
 <img src="../graph/3.1.6.png" width="729" height="439"/>
