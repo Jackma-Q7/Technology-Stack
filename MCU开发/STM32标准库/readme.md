@@ -83,7 +83,7 @@
 
 - [[9-5]串口收发HEX数据包&串口收发文本数据](markdown/[9-5]串口收发HEX数据包&串口收发文本数据.md)
 
-- [[9-6]FlyMcu串口下载&STLINK Utility](markdown/[9-6]FlyMcu串口下载&STLINK Utility.md)
+- [[9-6]FlyMcu串口下载&STLINK_Utility](markdown/[9-6]FlyMcu串口下载&STLINK_Utility.md)
 
 ### 第十章 I2C通信
 
