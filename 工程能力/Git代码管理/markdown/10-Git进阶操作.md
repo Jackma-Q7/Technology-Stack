@@ -11,7 +11,7 @@
 ### 1、交互式暂存（Interactive Staging）
 `git add` 命令可以选择性地将文件或文件的一部分添加到暂存区，这在处理复杂更改时非常有用。
 
-+ **使用**** **`**git add -p**`：逐块选择要暂存的更改。
++ **使用** **`git add -p`**：逐块选择要暂存的更改。
 
 git add -p
 
@@ -136,7 +136,7 @@ git stash list
 git stash apply
 ```
 
-**变基当前分支到**** **`**main**`** ****分支**：
+**变基当前分支到`main`分支**：
 
 ```bash
 git rebase main
@@ -150,7 +150,7 @@ git rebase -i HEAD~3
 
 编辑提交历史，如合并和重命名提交。
 
-**拣选**** **`**feature**`** ****分支上的特定提交到**** **`**main**`** ****分支**：
+**拣选`feature`分支上的特定提交到`main`分支**：
 
 ```bash
 git checkout main

@@ -5,8 +5,8 @@ Git 提供了多种命令和选项来查看提交历史，从简单的日志到�
 
 Git 提交历史一般常用两个命令：
 
-+ **git log** - 查看历史提交记录。
-+ **git blame <file>** - 以列表形式查看指定文件的历史修改记录。
++ **`git log`** - 查看历史提交记录。
++ **`git blame <file>`** - 以列表形式查看指定文件的历史修改记录。
 
 ## git log
 在使用 Git 提交了若干更新之后，又或者克隆了某个项目，想回顾下提交历史，我们可以使用 **git log** 命令查看。
@@ -17,7 +17,7 @@ Git 提交历史一般常用两个命令：
 
 **git log** 命令的基本语法：
 
-<font style="color:rgb(51, 51, 51);background-color:rgb(248, 251, 245);">git log [选项] [分支名/提交哈希]
+git log [选项] [分支名/提交哈希]
 
 常用的选项包括：
 
@@ -163,7 +163,7 @@ git log --until="2024-07-01"
 git log --author="Author Name"
 ```
 
-更多 **git log** 命令可查看 [<font style="color:rgb(0, 102, 0);background-color:rgb(250, 250, 248);">http://git-scm.com/docs/git-log](http://git-scm.com/docs/git-log) 或使用 **git log --help** 命令查看帮助信息。
+更多 **git log** 命令可查看 [http://git-scm.com/docs/git-log](http://git-scm.com/docs/git-log) 或使用 **git log --help** 命令查看帮助信息。
 
 ## git blame
 **git blame** 命令用于逐行显示指定文件的每一行代码是由谁在什么时候引入或修改的。
@@ -172,7 +172,7 @@ git log --author="Author Name"
 
 如果要查看指定文件的修改记录可以使用 git blame 命令，格式如下：
 
-<font style="color:rgb(51, 51, 51);background-color:rgb(248, 251, 245);">git blame [选项] <文件路径>
+git blame [选项] <文件路径>
 
 常用的选项包括：
 
@@ -227,10 +227,10 @@ Git 提供了多种方式来恢复和回退到之前的版本，不同的命令�
 
 以下是几种常见的方法：
 
-+ `**git checkout**`：切换分支或恢复文件到指定提交。
-+ `**git reset**`：重置当前分支到指定提交（软重置、混合重置、硬重置）。
-+ `**git revert**`：创建一个新的提交以撤销指定提交，不改变提交历史。
-+ `**git reflog**`：查看历史操作记录，找回丢失的提交。
++ **`git checkout`**：切换分支或恢复文件到指定提交。
++ **`git reset`**：重置当前分支到指定提交（软重置、混合重置、硬重置）。
++ **`git revert`**：创建一个新的提交以撤销指定提交，不改变提交历史。
++ **`git reflog`**：查看历史操作记录，找回丢失的提交。
 
 ### 1、git checkout：检查出特定版本的文件
 git checkout 命令用于切换分支或恢复工作目录中的文件到指定的提交。

@@ -5,11 +5,6 @@ Git 并不像 SVN 那样有个中心服务器。
 
 本例使用了 Github 作为远程仓库，你可以先阅读我们的 [Github 简明教程。](https://www.runoob.com/w3cnote/git-guide.html)
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855666772-731174b7-80fe-4ceb-a42f-03e1916980ff.jpeg)
-
----
-
 ## 添加远程库
 要添加一个新的远程仓库，可以指定一个简单的名字，以便将来引用,命令格式如下：
 
@@ -57,21 +52,7 @@ The key's randomart image is:
 
 回到 github 上，进入 Account => Settings（账户配置）。
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855666987-1e46d77b-f37d-47f2-b77e-4ac8eabc1a4d.jpeg)
-
 左边选择 **SSH and GPG keys**，然后点击 **New SSH key** 按钮,title 设置标题，可以随便填，粘贴在你电脑上生成的 key。
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855666803-ebe11724-949b-4359-923f-c6a5ad8f154f.jpeg)
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855666986-2df3da47-4843-4948-9580-094d6fe8450a.jpeg)
-
-添加成功后界面如下所示
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855666796-95ad8bb4-db02-4a26-8612-3607f772bf1d.jpeg)
 
 为了验证是否成功，输入以下命令：
 
@@ -88,18 +69,7 @@ Hi tianqixin! You've successfully authenticated, but GitHub does not provide she
 
 之后登录后点击" New repository " 如下图所示：
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855667392-a4ae6dc5-cbca-400b-a100-c84ad6be860b.jpeg)
-
-之后在在Repository name 填入 runoob-git-test(远程仓库名) ，其他保持默认设置，点击"Create repository"按钮，就成功地创建了一个新的Git仓库：
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855667466-53b5f4a7-35d5-494c-ad52-63870351d973.jpeg)
-
-创建成功后，显示如下信息：
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855667502-cf3b3d30-864f-4cfd-ab3e-58c010c2396b.jpeg)
+之后在在Repository name 填入 runoob-git-test(远程仓库名) ，其他保持默认设置，点击"Create repository"按钮，就成功地创建了一个新的Git仓库.
 
 以上信息告诉我们可以从这个仓库克隆出新的仓库，也可以把本地仓库的内容推送到GitHub仓库。
 
@@ -126,11 +96,6 @@ $ git push -u origin master
 以下命令请根据你在Github成功创建新仓库的地方复制，而不是根据我提供的命令，因为我们的Github用户名不一样，仓库名也不一样。
 
 接下来我们返回 Github 创建的仓库，就可以看到文件已上传到 Github上：
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855667692-585ddbaf-7860-4897-b3e0-d3a2af95f59d.jpeg)
-
----
 
 ## 查看当前的远程库
 要查看当前配置有哪些远程仓库，可以用命令：
@@ -169,15 +134,10 @@ git merge
 
 该命令就是在执行 **git fetch** 之后紧接着执行 **git merge** 远程分支到你所在的任意分支。
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1777855667758-e0169d06-ce66-4291-9c83-df16da084550.png)
 
 假设你配置好了一个远程仓库，并且你想要提取更新的数据，你可以首先执行 **git fetch [alias]** 告诉 Git 去获取它有你没有的数据，然后你可以执行 **git merge [alias]/[branch]** 以将服务器上的任何更新（假设有人这时候推送到服务器了）合并到你的当前分支。
 
-接下来我们在 Github 上点击" README.md" 并在线修改它:
-
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855668089-6c44928a-ae14-4fbb-8f3a-d93629ae46fd.jpeg)
+接下来我们在 Github 上点击`README.md` 并在线修改它:
 
 然后我们在本地更新修改。
 
@@ -229,10 +189,8 @@ master 69e702d] 添加到远程
 $ git push origin master    # 推送到 Github
 ```
 
-重新回到我们的 Github 仓库，可以看到文件已经提交上来了：
+重新回到我们的 Github 仓库，可以看到文件已经提交上来了。
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1777855668202-06ad1368-5ef8-41b7-885b-d4c6bafec5df.jpeg)
 
 ## 删除远程仓库
 删除远程仓库你可以使用命令：
