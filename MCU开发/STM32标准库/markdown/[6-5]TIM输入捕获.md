@@ -11,8 +11,8 @@ IC（Input Capture）输入捕获输入
 可配合主从触发模式，实现硬件全自动测量
 
 ### 频率测量
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766539243359-d1d2a27e-233c-4c74-b08b-152aa50ecfec.png)
+
+<img src="../graph/650.png" style="max-width:100%;height:auto;"/>
 
 测频法：在闸门时间T内，对上升沿计次，得到N，则频率（高频）（跳频慢）
 
@@ -24,21 +24,20 @@ f_x=f_c / N
 
 中界频率：测频法与测周法误差相等的频率点
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766539304943-8fa273b7-e73e-49ec-a76d-4b3af3c67e2d.png)
+fm=(fc/T)^(1/2)
 
 ### 输入捕获通道
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766539654121-d11489b5-d321-45cc-a540-f7560d372895.png)
+
+<img src="../graph/651.png" style="max-width:100%;height:auto;"/>
 
 ### 主从触发模式
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766539709999-53973148-d1cb-410c-b4ef-0e8374f88615.png)
+
+<img src="../graph/652.png" style="max-width:100%;height:auto;"/>
 
 ### 输入捕获基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766541182228-6c9821f1-dc6c-43d4-9ce6-0276306bb396.png)
+
+<img src="../graph/653.png" style="max-width:100%;height:auto;"/>
 
 ### PWMI基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766541199153-638d162f-caaa-4216-be20-d6b8a1bc3bcb.png)
+
+<img src="../graph/654.png" style="max-width:100%;height:auto;"/>

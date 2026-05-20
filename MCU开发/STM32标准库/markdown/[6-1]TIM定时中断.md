@@ -12,49 +12,49 @@ TIM（Timer）定时器
 根据复杂度和应用场景分为了高级定时器、通用定时器、基本定时器三种类型
 
 ### 定时器类型
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766219377922-55e187f4-86cb-4e98-9f94-6fc9c07f232b.png)
+
+<img src="../graph/610.png" style="max-width:100%;height:auto;"/>
 
 STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4
 
 ### 基本定时器
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766219499171-cbe3d62c-16c2-433c-be5b-92d6cb7ab6ce.png)
+
+<img src="../graph/611.png" style="max-width:100%;height:auto;"/>
 
 ### 通用定时器 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766219524840-41648448-a4ea-4786-b06e-d9e445e1ed32.png)
+
+<img src="../graph/612.png" style="max-width:100%;height:auto;"/>
 
 ### 高级定时器
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766219472437-00ba41b7-6f1d-4570-b3bc-6437ab317cc0.png)
+
+<img src="../graph/613.png" style="max-width:100%;height:auto;"/>
 
 ### 定时中断基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766409073991-05351169-6dbf-4f08-8a60-617899b46f64.png)
+
+<img src="../graph/614.png" style="max-width:100%;height:auto;"/>
 
 ### 预分频器时序
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766409271561-22ecee1e-8be0-4dfe-a5b2-adb8ee72020e.png)
+
+<img src="../graph/615.png" style="max-width:100%;height:auto;"/>
 
 计数器计数频率：CK_CNT = CK_PSC / (PSC + 1)
 
 ### 计数器时序
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766409444725-296a0e94-02cb-4a65-b560-a06a0339c59d.png)
+
+<img src="../graph/616.png" style="max-width:100%;height:auto;"/>
 
 计数器溢出频率：
 
 CK_CNT_OV = CK_CNT / (ARR + 1) = CK_PSC / (PSC + 1) / (ARR + 1)
 
 ### 计数器无预装时序
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766409598833-162583af-b459-461a-9afe-6c171d8aab7f.png)
+
+<img src="../graph/617.png" style="max-width:100%;height:auto;"/>
 
 ### 计数器有预装时序
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766409811508-d0e107a6-b5c5-4d2c-974f-dc57ec82e21b.png)
+
+<img src="../graph/618.png" style="max-width:100%;height:auto;"/>
 
 ### RCC时钟树
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766410021109-acdf5fd9-4479-4e99-b4e4-071533b1ee1b.png)
+
+<img src="../graph/619.png" style="max-width:100%;height:auto;"/>

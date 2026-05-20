@@ -1,7 +1,7 @@
 ## [7-2] AD单通道&AD多通道
 ### AD单通道
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766628259305-fddf5a0d-f449-4bf6-b417-023c191ef4e2.jpeg)
+
+<img src="../graph/720.jpg" style="max-width:100%;height:auto;"/>
 
 ```c
 #ifndef __AD_H
@@ -119,8 +119,8 @@ int main(void)
 <font style="color:rgb(15, 17, 21);">ADC_SoftwareStartConvCmd(ADC1, ENABLE);                    // 启动连续转换</font>
 
 ### AD多通道
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766630344157-ad2aa48d-c625-4e5e-b386-c8763bd1e454.jpeg)
+
+<img src="../graph/721.jpg" style="max-width:100%;height:auto;"/>
 
 ```c
 #include "stm32f10x.h"                  // Device header

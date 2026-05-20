@@ -7,7 +7,7 @@ ADC可以将引脚上连续变化的模拟电压转换为内存中存储的数�
 
 12位逐次逼近型ADC，1us转换时间
 
-输入电压范围：0~3.3V，转换结果范围：0~4095
+输入电压范围：`0~3.3V`，转换结果范围：`0~4095`
 
 18个输入通道，可测量16个外部和2个内部信号源
 
@@ -18,56 +18,50 @@ ADC可以将引脚上连续变化的模拟电压转换为内存中存储的数�
 STM32F103C8T6 ADC资源：ADC1、ADC2，10个外部输入通道
 
 ### 逐次逼近型ADC
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766624781410-a0f1df33-4622-4b98-a4c6-f7797005d2ec.png)
+
+<img src="../graph/710.png" style="max-width:100%;height:auto;"/>
 
 ### ADC框图
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766624818236-0f3bc6fb-c333-455d-84cb-9efb796aacfe.png)
+
+<img src="../graph/711.png" style="max-width:100%;height:auto;"/>
 
 ### ADC基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766624842569-57489c4a-ec72-46a0-8f11-5efedb7d706e.png)
+
+<img src="../graph/712.png" style="max-width:100%;height:auto;"/>
 
 ### 输入通道
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766624863709-0b0bda1e-0d29-4a65-8701-03502ee8fafe.png)
+
+<img src="../graph/713.png" style="max-width:100%;height:auto;"/>
 
 ### 转换模式
 **单次转换，非扫描模式**
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766624901586-017a06a8-b4ea-49ff-9d5b-93332f23db2c.png)
+<img src="../graph/714.png" style="max-width:100%;height:auto;"/>
 
 **连续转换，非扫描模式**
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766624941387-35b4b473-4111-4349-8014-43bda9438068.png)
+<img src="../graph/715.png" style="max-width:100%;height:auto;"/>
 
 **单次转换，扫描模式**
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766624968206-e1a7c383-1cdb-492c-b22a-5c92891c3ca3.png)
+<img src="../graph/716.png" style="max-width:100%;height:auto;"/>
 
 **连续转换，扫描模式**
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766624988151-546d32a8-7ff8-494c-a8f3-20751ab0bcb4.png)
+<img src="../graph/717.png" style="max-width:100%;height:auto;"/>
 
 ### 触发控制
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766625028171-e5589cab-5f95-49f8-a5d4-a6e7b2158b3f.png)
+
+<img src="../graph/718.png" style="max-width:100%;height:auto;"/>
 
 ### 数据对齐
 数据右对齐：
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766625053759-e4bdfea9-de1f-4923-aa1d-85bd90877cdb.png)
+<img src="../graph/719.png" style="max-width:100%;height:auto;"/>
 
 数据左对齐：
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766625064144-7db3a9cf-d534-47fd-ae5f-d65c675f4431.png)
+<img src="../graph/719.0.png" style="max-width:100%;height:auto;"/>
 
 ### 转换时间
 AD转换的步骤：采样，保持，量化，编码
@@ -86,5 +80,5 @@ ADC有一个内置自校准模式。校准可大幅减小因内部电容器组�
 建议在每次上电后执行一次校准启动校准前， ADC必须处于关电状态超过至少两个ADC时钟周期
 
 ### 硬件电路
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766627754018-ad1ed18a-3993-4ff7-990b-437bd42aeae9.png)
+
+<img src="../graph/719.1.png" style="max-width:100%;height:auto;"/>

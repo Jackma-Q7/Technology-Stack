@@ -9,27 +9,24 @@ Encoder Interface 编码器接口
 两个输入引脚借用了输入捕获的通道1和通道2
 
 ### 正交编码器
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766543942142-ce4391bc-780a-4064-a143-1d2270c297ce.png)
+
+<img src="../graph/670.png" style="max-width:100%;height:auto;"/>
 
 ### 编码器接口基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766543962167-e3fcf2fe-8cb2-4d01-b2a9-7401dcf66932.png)
+
+<img src="../graph/671.png" style="max-width:100%;height:auto;"/>
 
 ### 工作模式
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766543980213-0134bca5-35fb-4a54-9552-0f49b8e0e8c5.png)
+
+<img src="../graph/672.png" style="max-width:100%;height:auto;"/>
 
 ### 实例（均不反相）
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766544001066-2922dd73-079a-4c41-b2c2-453b547de168.png)
+<img src="../graph/673.png" style="max-width:100%;height:auto;"/>
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766544008525-11984857-f0f1-4c2b-8499-a80b66d9d538.png)
+
+<img src="../graph/674.png" style="max-width:100%;height:auto;"/>
 
 ### 实例（TI1反相）
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766544025244-0bebbb08-4a2d-4e8f-8e25-f87d3100687c.png)
+<img src="../graph/675.png" style="max-width:100%;height:auto;"/>
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766544030543-6886afbf-4f35-4f6a-bcc5-012f169fed3d.png)
+<img src="../graph/676.png" style="max-width:100%;height:auto;"/>

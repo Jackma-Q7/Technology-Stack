@@ -1,7 +1,7 @@
 ## [6-6] 输入捕获模式测频率&PWMI模式测频率占空比
 ### 输入捕获模式测频率
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766541853241-7ee32e0a-6c20-40d2-ba9e-eec115dc3e8f.jpeg)
+
+<img src="../graph/660.png" style="max-width:100%;height:auto;"/>
 
 ```c
 #ifndef __IC_H
@@ -118,8 +118,8 @@ void PWM_SetPrescaler(uint16_t Prescaler)
 ```
 
 ### PWMI模式测频率占空比
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766542157515-e03ab88c-5674-40fa-91fb-cae56fa30b58.jpeg)
+
+<img src="../graph/661.png" style="max-width:100%;height:auto;"/>
 
 ```c
 #ifndef __IC_H

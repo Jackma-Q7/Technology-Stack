@@ -1,7 +1,7 @@
 ## [6-4] PWM驱动LED呼吸灯&PWM驱动舵机&PWM驱动直流电机
 ### PWM驱动LED呼吸灯+引脚重映射
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766109270845-d854ba57-a6b9-41f5-9b68-f14e63281fc6.jpeg)
+
+<img src="../graph/641.png" style="max-width:100%;height:auto;"/>
 
 ```c
 #include "stm32f10x.h"                  // Device header
@@ -112,12 +112,11 @@ void PWM_SetCompare1(uint16_t Compare)
 }
 ```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766497177426-073d3ac6-d990-4ca5-bf54-0abac34e2d3e.png)
+<img src="../graph/642.png" style="max-width:100%;height:auto;"/>
 
 ### PWM驱动舵机
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766110445054-a9c070f2-025f-433d-a5d9-dec6e199b422.jpeg)
+
+<img src="../graph/643.png" style="max-width:100%;height:auto;"/>
 
 ```c
 #ifndef __SERVO_H
@@ -195,8 +194,8 @@ int main(void)
 ```
 
 ### PWM驱动直流电机
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766497845432-cfccb856-98a5-4a51-8b99-1bdc32d523ac.jpeg)
+
+<img src="../graph/644.png" style="max-width:100%;height:auto;"/>
 
 ```c
 #ifndef __MOTOR_H

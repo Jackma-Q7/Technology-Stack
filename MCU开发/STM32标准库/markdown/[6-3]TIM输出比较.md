@@ -13,28 +13,27 @@ PWM（Pulse Width Modulation）脉冲宽度调制
 
 PWM参数：     频率 = 1 / TS            占空比 = TON / TS           分辨率 = 占空比变化步距
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766466259198-434de080-5e09-47e5-9c8b-5172ad4d5feb.png)
+<img src="../graph/630.png" style="max-width:100%;height:auto;"/>
 
 ### 输出比较通道(通用)
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766466474768-e0cc6b1c-7bb1-4f87-b065-94a28954cfce.png)
+
+<img src="../graph/631.png" style="max-width:100%;height:auto;"/>
 
 ### 输出比较通道(高级)
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766466456526-02fbd492-79bc-438f-b1d4-8c50839267f8.png)
+
+<img src="../graph/632.png" style="max-width:100%;height:auto;"/>
 
 ### 输出比较模式
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766466593751-e64c11dd-5a3f-48ec-978d-cf4737fbe430.png)
+
+<img src="../graph/633.png" style="max-width:100%;height:auto;"/>
 
 ### PWM基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766108122501-c83ce427-c327-45bb-a4b5-4e480e6246e4.png)
+
+<img src="../graph/634.png" style="max-width:100%;height:auto;"/>
 
 ### 参数计算
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766108170005-4da4bd90-45a5-47ec-ad8b-a088d9586f0e.png)
+
+<img src="../graph/635.png" style="max-width:100%;height:auto;"/>
 
 PWM频率：	Freq = CK_PSC / (PSC + 1) / (ARR + 1)
 
@@ -47,12 +46,11 @@ PWM分辨率：	Reso = 1 / (ARR + 1)<font style="color:#DF2A3F;">（定义的分
 
 输入PWM信号要求：周期为20ms，高电平宽度为0.5ms~2.5ms
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766108283100-86fa6b6d-4628-45cd-9a1c-03d6a90ef60c.png)
+<img src="../graph/636.png" style="max-width:100%;height:auto;"/>
 
 ### 硬件电路
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766108360445-81144b09-c79c-41f4-8598-f7bd8f355833.png)
+
+<img src="../graph/637.png" style="max-width:100%;height:auto;"/>
 
 ### 直流电机及驱动简介
 直流电机是一种将电能转换为机械能的装置，有两个电极，当电极正接时，电机正转，当电极反接时，电机反转
@@ -61,10 +59,10 @@ PWM分辨率：	Reso = 1 / (ARR + 1)<font style="color:#DF2A3F;">（定义的分
 
 TB6612是一款双路H桥型的直流电机驱动芯片，可以驱动两个直流电机并且控制其转速和方向
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766108413273-54390f81-a394-4606-9d2b-97a14750d75e.png)
+<img src="../graph/638.png" style="max-width:100%;height:auto;"/>
 
 ### 硬件电路
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766108450747-277b954b-7b88-43da-8992-095df4a03a0c.png)<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766108462236-6917e5a0-9294-435a-880a-cab1e9a00b3c.png)
+
+<img src="../graph/639.png" style="max-width:100%;height:auto;"/>
+
+<img src="../graph/639.0.png" style="max-width:100%;height:auto;"/>
