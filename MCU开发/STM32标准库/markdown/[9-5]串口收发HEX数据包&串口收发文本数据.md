@@ -1,7 +1,7 @@
 ## [9-5] 串口收发HEX数据包&串口收发文本数据
 ### 串口收发HEX数据包
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766111621118-378b5e58-e99d-4f24-a9c4-9649c6054476.jpeg)
+
+<img src="../graph/934.jpg" style="max-width:100%;height:auto;"/>
 
 ```c
 #include "stm32f10x.h"                  // Device header
@@ -321,8 +321,8 @@ void USART1_IRQHandler(void)
 ```
 
 ### 串口收发文本数据
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766111197178-97a8c96a-8139-4517-9a04-65582a8dacb9.jpeg)
+
+<img src="../graph/934.jpg" style="max-width:100%;height:auto;"/>
 
 ```c
 #include "stm32f10x.h"                  // Device header
@@ -610,5 +610,4 @@ void USART1_IRQHandler(void)
 }
 ```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766113190932-6b6a3061-50f3-4b6c-abe8-dc1419fc61ee.png)
+<img src="../graph/950.png" style="max-width:100%;height:auto;"/>

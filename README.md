@@ -1,5 +1,7 @@
 # 嵌入式学习笔记
 
+<img src="./graph/5.21.png" style="max-width:100%;height:auto;"/>
+
 ## 目录
 
 ### 编程基础

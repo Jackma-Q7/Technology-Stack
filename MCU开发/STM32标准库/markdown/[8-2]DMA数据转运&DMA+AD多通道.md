@@ -1,7 +1,7 @@
 ## [8-2] DMA数据转运&DMA+AD多通道
 ### DMA数据转运
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766714126947-e4b0cf90-4c9e-4523-8b64-5bfe62344d1b.jpeg)
+
+<img src="../graph/820.png" style="max-width:100%;height:auto;"/>
 
 ```c
 #ifndef __MYDMA_H
@@ -126,8 +126,8 @@ int main(void)
 ```
 
 ### DMA+AD多通道
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/jpeg/57223890/1766714152340-12c5c451-8b32-4109-afd0-3f8bb1dcbd43.jpeg)
+
+<img src="../graph/821.png" style="max-width:100%;height:auto;"/>
 
 ```c
 #ifndef __AD_H
@@ -249,8 +249,7 @@ ADC单次扫描+DMA单次转运的模式
 
 DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1766718011413-742c6971-7fe9-4f63-8c69-83217e899843.png)
+<img src="../graph/822.png" style="max-width:100%;height:auto;"/>
 
 <font style="color:#DF2A3F;"> stm32，在我们写好代码在编程软件，编译为bin文件，烧录在flash然后呢</font>？  
 
