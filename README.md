@@ -6,28 +6,32 @@
 
 ### 编程基础
 
-- [C语言指针的详解与应用](./编程基础/C语言指针的详解与应用/readme.md)
-- [CMake入门](./编程基础/CMake/readme.md)
-- [嵌入式C语言高阶版](./编程基础/嵌入式C语言高阶版/readme.md)
-- [现代C++11核心特性详解](./编程基础/现代C++11核心特性详解/readme.md)
+- [Python](./编程基础/Python/readme.md)
+- [C语言指针的详解与应用](./编程基础/C语言指针的详解与应用/readme.md)✅
+- [CMake入门](./编程基础/CMake/readme.md)✅
+- [嵌入式C语言高阶版](./编程基础/嵌入式C语言高阶版/readme.md)✅
+- [现代C++11核心特性详解](./编程基础/现代C++11核心特性详解/readme.md)✅
+- [C++并发编程](./编程基础/C++并发编程/readme.md)
 
 ### 工程能力
 
-- [Git代码管理](./工程能力/Git代码管理/readme.md)
+- [Git代码管理](./工程能力/Git代码管理/readme.md)✅
+- [Docker](./工程能力/Docker/readme.md)
 - [CAN总线入门](./工程能力/CAN总线入门/readme.md)
-- [PID入门教程](./工程能力/PID入门教程/readme.md)
-
 
 ### 计算机系统
 
+- [数据结构](./计算机系统/数据结构/readme.md)
 - [现代操作系统](./计算机系统/现代操作系统/readme.md)
 - [操作系统实战45讲](./计算机系统/操作系统实战45讲/readme.md)
 
-### MCU开发
+### 嵌入式硬件
 
-- [STM32标准库](./MCU开发/STM32标准库/readme.md)
-- [STM32HAL库](./MCU开发/STM32HAL库/readme.md)
-- [FreeRTOS](./MCU开发/FreeRTOS/readme.md)
+- [立创EDA](./嵌入式硬件/立创EDA/readme.md)
+- [STM32标准库](./嵌入式硬件/STM32标准库/readme.md)
+- [STM32HAL库](./嵌入式硬件/STM32HAL库/readme.md)
+- [FreeRTOS](./嵌入式硬件/FreeRTOS/readme.md)
+- [FPGA](./嵌入式硬件/FPGA/readme.md)
 
 ### Linux&系统开发
 
@@ -36,6 +40,11 @@
 ### 机器人&感知
 
 - [ROS2(Fishros)](./机器人&感知/ROS2(Fishros)/readme.md)
+
+### 算法基础
+
+- [PID入门教程](./算法基础/PID入门教程/readme.md)
+- [卡尔曼滤波](./算法基础/卡尔曼滤波/readme.md)
 
 ### 刷题
 
