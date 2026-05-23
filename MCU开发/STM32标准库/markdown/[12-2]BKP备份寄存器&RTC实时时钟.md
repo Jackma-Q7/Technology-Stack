@@ -15,8 +15,8 @@ RTC引脚输出RTC校准时钟、RTC闹钟脉冲或者秒脉冲
 	20字节（中容量和小容量）/ 84字节（大容量和互联型）
 
 ### BKP基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767063051737-ec43d18b-7d2e-4509-92c4-d19257890bef.png)
+
+<img src="../graph/1220.png" style="max-width:100%;height:auto;"/>
 
 ### RTC简介
 RTC（Real Time Clock）实时时钟
@@ -38,27 +38,27 @@ RTC和时钟配置系统处于后备区域，系统复位时数据不清零，VD
 	LSI振荡器时钟（40KHz）
 
 ### RTC框图
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767063132869-0e589186-11e9-4490-aa21-b74e16b2f259.png)
+
+<img src="../graph/1221.png" style="max-width:100%;height:auto;"/>
 
 ### RTC基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767063151081-d5ac07c2-a677-4bd5-b3dd-6a8399856ef9.png)
+
+<img src="../graph/1222.png" style="max-width:100%;height:auto;"/>
 
 ### 硬件电路
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767063169221-3f5d2e65-ce52-492e-8cf1-4991dd240ace.png)
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767063180477-255a802d-b715-4089-be3c-319e4018ad47.png)<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767063184966-03711115-12cc-4965-9008-1b892fadb9d2.png)
+<img src="../graph/1223.png" style="max-width:100%;height:auto;"/>
+
+<img src="../graph/1224.png" style="max-width:100%;height:auto;"/>
+
+<img src="../graph/1225.png" style="max-width:100%;height:auto;"/>
 
 ### RTC操作注意事项
 执行以下操作将使能对BKP和RTC的访问：
 
-	设置RCC_APB1ENR的PWREN和BKPEN，使能PWR和BKP时钟
+- 设置RCC_APB1ENR的PWREN和BKPEN，使能PWR和BKP时钟
 
-	设置PWR_CR的DBP，使能对BKP和RTC的访问
+- 设置PWR_CR的DBP，使能对BKP和RTC的访问
 
 若在读取RTC寄存器时，RTC的APB1接口曾经处于禁止状态，则软件首先必须等待RTC_CRL寄存器中的RSF位（寄存器同步标志）被硬件置1
 

@@ -14,8 +14,8 @@ STM32F1系列的FLASH包含程序存储器、系统存储器和选项字节三�
 在程序中编程（In-Application Programming – IAP）可以使用微控制器支持的任一种通信接口下载程序
 
 ### 闪存模块组织
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1767319548247-96188f7e-89b7-46ec-9a6b-2feb4ebddc4f.png)
+
+<img src="../graph/1510.png" style="max-width:100%;height:auto;"/>
 
 这一行：
 
@@ -36,9 +36,9 @@ Address        0        4        8        C
 
 👉 **每一格是 4 个字节（32 位）**
 
-**那 **`**0x08000001**`** 在哪？**
+**那 **`0x08000001`** 在哪？**
 
-**我们把 **`**0x08000000**`** 这一格 ****拆成字节**** **👇
+**我们把 **`0x08000000`** 这一格 拆成字节**👇
 
 ```plain
 地址         数据（32位） = 0x20000660
@@ -49,22 +49,21 @@ Address        0        4        8        C
 0x08000003 → 0x20
 ```
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1767237497754-02ae2061-4af7-4019-8cb3-d7365441c09c.png)
+<img src="../graph/1511.png" style="max-width:100%;height:auto;"/>
 
-| <font style="color:rgb(15, 17, 21);">特性</font> | **<font style="color:rgb(15, 17, 21);">系统存储器 (2KB)</font>** | **<font style="color:rgb(15, 17, 21);">选项字节 (16字节)</font>** |
+| 特性 | **系统存储器 (2KB)** | **选项字节 (16字节)** |
 | --- | --- | --- |
-| **<font style="color:rgb(15, 17, 21);">大小</font>** | <font style="color:rgb(15, 17, 21);">2KB</font> | <font style="color:rgb(15, 17, 21);">16字节</font> |
-| **<font style="color:rgb(15, 17, 21);">可写性</font>** | <font style="color:rgb(15, 17, 21);">出厂固化，只读</font> | <font style="color:rgb(15, 17, 21);">可编程（需特殊解锁）</font> |
-| **<font style="color:rgb(15, 17, 21);">内容</font>** | <font style="color:rgb(15, 17, 21);">Bootloader程序</font> | <font style="color:rgb(15, 17, 21);">配置参数</font> |
-| **<font style="color:rgb(15, 17, 21);">作用</font>** | <font style="color:rgb(15, 17, 21);">系统引导、ISP升级</font> | <font style="color:rgb(15, 17, 21);">芯片功能配置</font> |
-| **<font style="color:rgb(15, 17, 21);">访问方式</font>** | <font style="color:rgb(15, 17, 21);">通过启动模式选择</font> | <font style="color:rgb(15, 17, 21);">通过Flash编程接口</font> |
-| **<font style="color:rgb(15, 17, 21);">修改风险</font>** | <font style="color:rgb(15, 17, 21);">无法修改</font> | <font style="color:rgb(15, 17, 21);">错误配置可能导致芯片锁死</font> |
+| **大小** | 2KB | 16字节 |
+| **可写性** | 出厂固化，只读 | 可编程（需特殊解锁） |
+| **内容** | Bootloader程序 | 配置参数 |
+| **作用** | 系统引导、ISP升级 | 芯片功能配置 |
+| **访问方式** | 通过启动模式选择 | 通过Flash编程接口 |
+| **修改风险** | 无法修改 | 错误配置可能导致芯片锁死 |
 
 
 ### FLASH基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1767237524682-abe8941c-dbfc-4a5d-ac10-8570c8b03b56.png)
+
+<img src="../graph/1512.png" style="max-width:100%;height:auto;"/>
 
 ### FLASH解锁
 FPEC共有三个键值：
@@ -87,9 +86,9 @@ FPEC共有三个键值：
 
 	设置FLASH_CR中的LOCK位锁住FPEC和FLASH_CR
 
-<font style="color:#DF2A3F;">RDPRT键 = 0x000000A5这个是用来干嘛的？</font>
+RDPRT键 = 0x000000A5这个是用来干嘛的？
 
-`<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">RDPRT键 = 0x000000A5</font>`<font style="color:rgb(15, 17, 21);"> 是STM32中一个</font>**<font style="color:rgb(15, 17, 21);">非常重要的安全相关密钥</font>**<font style="color:rgb(15, 17, 21);">，主要用于</font>**<font style="color:rgb(15, 17, 21);">解除读保护（Read Protection）</font>**<font style="color:rgb(15, 17, 21);">。</font>
+`RDPRT键 = 0x000000A5` 是STM32中一个**非常重要的安全相关密钥**，主要用于**解除读保护（Read Protection）**。
 
 ### 使用指针访问存储器
 使用指针读指定地址下的存储器：
@@ -104,30 +103,30 @@ FPEC共有三个键值：
 
 	#define    __IO    volatile
 
-#### <font style="color:rgb(15, 17, 21);">分解步骤：</font>
-1. `<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">0x08000000</font>`<font style="color:rgb(15, 17, 21);"> </font><font style="color:rgb(15, 17, 21);">- 一个具体的十六进制地址</font>
-2. `<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">(__IO uint16_t *)</font>`<font style="color:rgb(15, 17, 21);"> </font><font style="color:rgb(15, 17, 21);">- 强制类型转换，将这个地址转换为指向</font><font style="color:rgb(15, 17, 21);"> </font>`<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">uint16_t</font>`<font style="color:rgb(15, 17, 21);"> </font><font style="color:rgb(15, 17, 21);">类型的指针，并带有</font><font style="color:rgb(15, 17, 21);"> </font>`<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">__IO</font>`<font style="color:rgb(15, 17, 21);"> </font><font style="color:rgb(15, 17, 21);">修饰符</font>
-3. <font style="color:rgb(15, 17, 21);">最外层的 </font>`<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">*</font>`<font style="color:rgb(15, 17, 21);"> - 解引用这个指针，访问该地址处的数据</font>
+#### 分解步骤：
+1. `0x08000000` - 一个具体的十六进制地址
+2. `(__IO uint16_t *)` - 强制类型转换，将这个地址转换为指向 `uint16_t` 类型的指针，并带有 `__IO` 修饰符
+3. 最外层的 `*` - 解引用这个指针，访问该地址处的数据
 
-`**<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">(__IO uint16_t *)(0x08000000)</font>**`**<font style="color:rgb(15, 17, 21);"> 等于一个 </font>**`**<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">volatile uint16_t</font>**`**<font style="color:rgb(15, 17, 21);"> 类型的指针，其值为 </font>**`**<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">0x08000000</font>**`**<font style="color:rgb(15, 17, 21);">。</font>**
+`(__IO uint16_t *)(0x08000000)`**等于一个 **`volatile uint16_t`** 类型的指针，其值为 **`0x08000000`**。**
 
 ### 程序存储器编程
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1767237655547-6487aff4-af5f-49b4-bd96-d6b3c67af735.png)
+
+<img src="../graph/1513.png" style="max-width:100%;height:auto;"/>
 
 ### 程序存储器页擦除
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1767237685926-559687f1-4c56-493d-8ad5-01f142d7a532.png)
+
+<img src="../graph/1514.png" style="max-width:100%;height:auto;"/>
 
 ### 程序存储器全擦除
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1767237711417-5244eb26-d6c8-4fca-9962-836d5fbe8580.png)
+
+<img src="../graph/1515.png" style="max-width:100%;height:auto;"/>
 
 ### 选项字节
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1767237725577-417dc628-ae55-4d81-853a-19e79bfece7c.png)
 
-RDP：写入RDPRT键（0x000000A5）后<font style="color:#DF2A3F;">解除读保护</font>
+<img src="../graph/1516.png" style="max-width:100%;height:auto;"/>
+
+RDP：写入RDPRT键（0x000000A5）后解除读保护
 
 USER：配置硬件看门狗和进入停机/待机模式是否产生复位
 
@@ -144,7 +143,7 @@ WRP0/1/2/3：配置写保护，每一个位对应保护4个存储页（中容量
 
 设置FLASH_CR的OPTPG位为1
 
-写入要编程的<font style="color:#DF2A3F;">半字</font>到指定的地址
+写入要编程的半字到指定的地址
 
 等待BSY位变为0
 

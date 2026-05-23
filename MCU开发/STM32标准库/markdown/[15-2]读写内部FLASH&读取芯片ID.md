@@ -1,7 +1,7 @@
 ## [15-2] 读写内部FLASH&读取芯片ID
 ### 读写内部FLASH
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1767318515673-78bf05ba-88e1-427e-800a-00ff263d5ea3.jpeg)
+
+<img src="../graph/1520.jpg" style="max-width:100%;height:auto;"/>
 
 ```c
 #ifndef __MYFLASH_H
@@ -232,8 +232,10 @@ int main(void)
 
 ```
 
-### 读取芯片ID<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/jpeg/57223890/1767318517073-a5d674c9-e263-4482-8fc0-fe7273f50d8c.jpeg)
+### 读取芯片ID
+
+<img src="../graph/1520.jpg" style="max-width:100%;height:auto;"/>
+
 ```c
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
@@ -260,8 +262,8 @@ int main(void)
 
 ```
 
-<font style="color:#DF2A3F;">地址是32位的，但是值为什么是16位的？地址和值的类型不应该对应吗？</font>
+地址是32位的，但是值为什么是16位的？地址和值的类型不应该对应吗？
 
-<font style="color:#000000;">地址的位宽决定“能访问到哪里”  
-</font><font style="color:#000000;">数据的位宽决定“一次读多少”  
-</font><font style="color:#000000;">二者完全是两个概念，不需要对应  </font>
+地址的位宽决定“能访问到哪里”  
+数据的位宽决定“一次读多少”  
+二者完全是两个概念，不需要对应 

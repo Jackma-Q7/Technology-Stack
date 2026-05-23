@@ -107,6 +107,8 @@
 
 - [[11-4]SPI通信外设](markdown/[11-4]SPI通信外设.md)
 
+- [[11-5]硬件SPI读写W25Q64](markdown/[11-5]硬件SPI读写W25Q64.md)
+
 ### 第十二章 RTC实时时钟
 
 - [[12-1]Unix时间戳](markdown/[12-1]Unix时间戳.md)
@@ -132,3 +134,7 @@
 - [[15-1]FLASH闪存](markdown/[15-1]FLASH闪存.md)
 
 - [[15-2]读写内部FLASH&读取芯片ID](markdown/[15-2]读写内部FLASH&读取芯片ID.md)
+
+## 日志
+
+完成于 2026.5.23

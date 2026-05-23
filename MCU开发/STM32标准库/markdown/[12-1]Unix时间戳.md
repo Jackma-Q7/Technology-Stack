@@ -7,8 +7,7 @@ Unix 时间戳（Unix Timestamp）定义为从UTC/GMT的1970年1月1日0时0分0
 
 世界上所有时区的秒计数器相同，不同时区通过添加偏移来得到当地时间
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767062801124-62a021c6-3c26-428a-a9f1-bdebecc1fab7.png)
+<img src="../graph/1210.png" style="max-width:100%;height:auto;"/>
 
 ### UTC/GMT
 GMT（Greenwich Mean Time）格林尼治标准时间是一种以地球自转为基础的时间计量系统。它将地球自转一周的时间间隔等分为24小时，以此确定计时标准
@@ -18,12 +17,11 @@ UTC（Universal Time Coordinated）协调世界时是一种以原子钟为基础
 ### 时间戳转换
 C语言的time.h模块提供了时间获取和时间戳转换的相关函数，可以方便地进行秒计数器、日期时间和字符串之间的转换
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767062892865-0078f25f-432f-468a-8312-d486f2086e9d.png)
+<img src="../graph/1211.png" style="max-width:100%;height:auto;"/>
 
 ### 时间戳转换
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2025/png/57223890/1767062924395-519a227c-1abb-478b-afb4-251dee1444c7.png)
+
+<img src="../graph/1212.png" style="max-width:100%;height:auto;"/>
 
 ```c
 #include <stdio.h>
