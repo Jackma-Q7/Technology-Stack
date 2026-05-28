@@ -14,46 +14,41 @@ STM32内置bxCAN外设（CAN控制器），支持CAN2.0A和2.0B，可以自动�
 
 STM32F103C8T6 CAN资源：CAN1
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594828721-b42d08fe-1784-40b6-b804-e81d94b027a0.png)
+<img src="../graph/42.png" style="max-width:100%;height:auto;"/>
 
 ## CAN网拓扑结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594865009-191c22b0-64ce-4355-b6c4-bfe5fff9b54b.png)
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594883721-43133924-9ab7-4539-b467-0a7ec4e4ab12.png)
+<img src="../graph/43.png" style="max-width:100%;height:auto;"/>
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594900094-d00406fb-d774-49a6-a3a6-1fd76116a4c7.png)
+<img src="../graph/44.png" style="max-width:100%;height:auto;"/>
+
+<img src="../graph/45.png" style="max-width:100%;height:auto;"/>
 
 ## CAN收发器电路
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594915972-d65ee81e-ff2e-4495-9741-c22eddb4b50c.png)
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594920554-e192ab51-1231-4edf-8d17-af6581f45624.png)<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594924748-d0c0a258-e26f-4dc5-b31a-a31f047ca8cf.png)
+<img src="../graph/46.png" style="max-width:100%;height:auto;"/>
+
+<img src="../graph/47.png" style="max-width:100%;height:auto;"/>
+
+<img src="../graph/48.png" style="max-width:100%;height:auto;"/>
 
 ## CAN框图
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594960194-c7197109-64f7-4665-9913-5084b5e29b51.png)
+
+<img src="../graph/49.png" style="max-width:100%;height:auto;"/>
 
 ## CAN基本结构
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594983084-6c015020-9c91-45af-b992-f6788b5d1852.png)
+
+<img src="../graph/50.png" style="max-width:100%;height:auto;"/>
 
 ## 发送过程
 基本流程：选择一个空置邮箱→写入报文 →请求发送
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774594999150-3dc89593-3670-4f3b-ab2d-c742356f8ec3.png)
+<img src="../graph/51.png" style="max-width:100%;height:auto;"/>
 
 ## 接收过程
 基本流程：接收到一个报文→匹配过滤器后进入FIFO 0或FIFO 1→CPU读取
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595019680-794a67a3-7a7c-48ca-a5b9-daf6c24b6a2a.png)
+<img src="../graph/52.png" style="max-width:100%;height:auto;"/>
 
 ## 发送和接收配置位
 NART：置1，关闭自动重传，CAN报文只被发送1次，不管发送的结果如何（成功、出错或仲裁丢失）；置0，自动重传，CAN硬件在发送报文失败时会一直自动重传直到发送成功

@@ -10,12 +10,11 @@ FFAx：关联设置    置0，FIFO 0；置1，FIFO 1
 
 FACTx：激活设置    置0，禁用；置1，启用
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595079999-d003bd01-116e-4900-8d42-a0ece85311f0.png)
+<img src="../graph/53.png" style="max-width:100%;height:auto;"/>
 
 ## 过滤器配置示例
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595107846-369c2424-a95e-455a-8bb7-107a5cf2c6a7.png) 
+
+<img src="../graph/54.png" style="max-width:100%;height:auto;"/>
 
 ## 测试模式
 静默模式：用于分析CAN总线的活动，不会对总线造成影响
@@ -24,8 +23,7 @@ FACTx：激活设置    置0，禁用；置1，启用
 
 环回静默模式：用于热自测试，自测的同时不会影响CAN总线
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595136367-4eb8fe59-5717-45f4-883a-27908b5710de.png)
+<img src="../graph/55.png" style="max-width:100%;height:auto;"/>
 
 ## 工作模式
 初始化模式：用于配置CAN外设，禁止报文的接收和发送
@@ -36,13 +34,13 @@ FACTx：激活设置    置0，禁用；置1，启用
 
 AWUM：置1，自动唤醒，一旦检测到CAN总线活动，硬件就自动清零SLEEP，唤醒CAN外设；置0，手动唤醒，软件清零SLEEP，唤醒CAN外设
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595167937-f54173fa-56d7-473d-ae44-b07a4f5e44f5.png)
+<img src="../graph/56.png" style="max-width:100%;height:auto;"/>
 
 ## 位时间特性
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595184309-8dcd84d4-6145-4cb2-93b9-b9eb6d3e2494.png)
 
+<img src="../graph/57.png" style="max-width:100%;height:auto;"/>
+
+```
 SS = 1Tq
 
 BS1 = 1~16Tq
@@ -54,6 +52,7 @@ SJW=1~4Tq
 波特率 = APB1时钟频率 / 分频系数 / 一位的Tq数量
 
           = 36MHz / (BRP[9:0]+1) / (1 + (TS1[3:0]+1) + (TS2[2:0]+1))
+```
 
 ## 中断
 CAN外设占用4个专用的中断向量
@@ -66,8 +65,7 @@ FIFO 1中断：收到一个报文/FIFO 1满/FIFO 1溢出时产生
 
 状态改变错误中断：出错/唤醒/进入睡眠时产生
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595272655-3fa20e41-5279-42cb-9bba-57f00383a11a.png)
+<img src="../graph/58.png" style="max-width:100%;height:auto;"/>
 
 ## 时间触发通信
 TTCM：置1，开启时间触发通信功能；置0，关闭时间触发通信功能
@@ -80,13 +78,11 @@ TTCM置1后，该计数器在每个CAN位的时间自增一次，溢出后归零
 
 发送邮箱可配置TGT位，捕获计数器值的同时，也把此值写入到数据帧数据段的最后两个字节，为了使用此功能，DLC必须设置为8
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595309061-06d121b7-1958-47c1-97ce-e9da5d9f999d.png)
+<img src="../graph/59.png" style="max-width:100%;height:auto;"/>
 
 ## 错误处理和离线恢复
 TEC和REC根据错误的情况增加或减少
 
 ABOM：置1，开启离线自动恢复，进入离线状态后，就自动开启恢复过程；置0，关闭离线自动恢复，软件必须先请求进入然后再退出初始化模式，随后恢复过程才被开启
 
-<!-- 这是一张图片，ocr 内容为： -->
-![](https://cdn.nlark.com/yuque/0/2026/png/57223890/1774595339769-3cec0740-adea-46e1-afd1-055492b5d06a.png)
+<img src="../graph/60.png" style="max-width:100%;height:auto;"/>
